@@ -1,4 +1,5 @@
 @import url('./bootstrap.min.css');
+@import url('./hover-min.css');
 
 
 body {
@@ -9,7 +10,9 @@ body {
 
 // NAVIGATION-BAR
 .navigation-bar {
-    background-color: #3A3F54;
+    background-color: #343a40;
+    border-bottom: 1px solid black;
+
 
     .nav-item {
         .nav-link {
@@ -19,11 +22,17 @@ body {
 
     .nav-liens:hover {
         color: #343a40 !important;
+        font-weight: bold;
+    }
+
+    .dropdown-menu {
+        border: 0.1px solid white;
     }
 }
 
 // REGISTER FORM
 .register-form {
+
     #registration_form_email,
     #registration_form_plainPassword {
         background-clip: padding-box;
@@ -45,5 +54,104 @@ body {
         padding: .375rem .75rem;
         transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
         width: 100%;
+    }
+}
+
+// FOOTER
+
+footer {
+    border-top: 1px solid black;
+
+    div {
+        background-color: #343a40;
+
+        section {
+            font-size: 0.75rem;
+
+            .link-portfolio {
+                font-size: 1rem;
+                font-weight: bold;
+                border-bottom: 1px solid goldenrod;
+                padding: 0 0.5rem;
+            }
+
+            .hvr-sweep-to-top::before {
+                background: goldenrod;
+            }
+
+            .rs-logo {
+                font-size: 1.15rem;
+            }
+
+            h4 {
+                color: white;
+                text-transform: capitalize;
+                font-weight: bold;
+                font-size: 0.75rem;
+                padding-bottom: 0.25rem;
+            }
+
+            p {
+                color: white;
+            }
+
+            a {
+                text-decoration: none !important;
+                text-transform: capitalize;
+                color: lightgrey;
+                display: block;
+            }
+
+            a:hover {
+                color: goldenrod;
+            }
+        }
+
+        .anchor-top {
+            background-color: goldenrod;
+            position: relative;
+            display: none;
+            border-right: 1px solid black;
+
+            a {
+                display: inline-block;
+                position: absolute;
+                bottom: 40%;
+
+                i {
+                    font-size: 2.5em;
+                    color: white;
+                    font-weight: lighter;
+                    -webkit-text-stroke-width: 1px;
+                    -webkit-text-stroke-color: black;
+                }
+
+                i:hover {
+                    color: #343a40;
+                    cursor: pointer;
+                    -webkit-text-stroke-color: black;
+                }
+            }
+        }
+
+        .copyright {
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.5rem;
+        }
+    }
+}
+
+// HOMEPAGE
+
+//CAROUSEL
+.carousel-new {
+
+    .cards-new {
+        background-color: black !important;
+    }
+
+    .carousel-indicators-bottom {
+        position: initial !important;
     }
 }

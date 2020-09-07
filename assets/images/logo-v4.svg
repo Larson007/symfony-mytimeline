@@ -1,0 +1,14 @@
+<svg id="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1071 389.78">
+  <g id="text">
+    <text id="my" transform="translate(37.48 129.63)" font-size="165" fill="#d0d0d0" font-family="CourierNewPSMT, Courier New">My</text>
+    <text id="time" transform="translate(253.47 211.63)" font-size="165" fill="#d0d0d0" font-family="CourierNewPSMT, Courier New">Time</text>
+    <text id="line" transform="translate(669.47 277.63)" font-size="165" fill="#d0d0d0" font-family="CourierNewPSMT, Courier New">Line</text>
+  </g>
+  <g id="bar">
+    <rect id="red" x="40.99" y="179.67" width="172.47" height="36.03" rx="5" fill="#ee727a"/>
+    <rect id="green" x="247.01" y="241.71" width="172.47" height="36.03" rx="5" fill="#c4e791"/>
+    <rect id="yellow" x="453.02" y="241.71" width="172.47" height="36.03" rx="5" fill="#feca72"/>
+    <rect id="blue" x="669.03" y="297.67" width="172.47" height="36.03" rx="5" fill="#84acfc"/>
+    <rect id="purple" x="875.04" y="297.67" width="172.47" height="36.03" rx="5" fill="#c694e8"/>
+  </g>
+</svg>
