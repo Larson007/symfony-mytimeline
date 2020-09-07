@@ -1,5 +1,49 @@
 @import url('./bootstrap.min.css');
 
+
 body {
-    background-color: lightgray;
+    background-color: #2A2D3C;
+    font-family: 'Nova Mono', monospace;
+    color: white;
+}
+
+// NAVIGATION-BAR
+.navigation-bar {
+    background-color: #3A3F54;
+
+    .nav-item {
+        .nav-link {
+            color: white !important;
+        }
+    }
+
+    .nav-liens:hover {
+        color: #343a40 !important;
+    }
+}
+
+// REGISTER FORM
+.register-form {
+    #registration_form_email,
+    #registration_form_plainPassword {
+        background-clip: padding-box;
+        background-color: #fff;
+        border: 1px solid #80bdff;
+        border-radius: .25rem;
+        box-shadow: rgba(0, 123, 255, .25) 0 0 0 .2rem;
+        box-sizing: border-box;
+        color: #495057;
+        cursor: text;
+        display: block;
+        font-size: 1rem;
+        font-weight: 400;
+        height: calc(1.5em + .75rem + 2px);
+        line-height: 1.5;
+        margin: 0;
+        outline: 0;
+        overflow: visible;
+        padding: .375rem .75rem;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        width: 100%;
+    }
 }

@@ -93,6 +93,22 @@ console.log('script charger');
 
 &nbsp;
 
+#### `#` ***BASE.HTML.TWIG***
+
+````twig
+{# IMPORT DE APP.CSS DU WEBPACK ENCORE DANS LE <head> #}
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+{# IMPORT DE APP.JS DU WEBPACK ENCORE AVANT LA FERMETURE DU </body> #}
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+````
+
+&nbsp;
+
 #### `#` ***.env***
 
 ````env
@@ -114,9 +130,66 @@ DATABASE_URL=mysql://root:@127.0.0.1:3308/nom_de_la_bdd
 
 &nbsp;
 
-### **CREATION DE LA BDD**
+### **INITIALISATION**
+
+---
+
+&nbsp;
+
+#### `#` ***CREATION DE LA BDD***
 
 ````php
 php bin/console doctrine:database:create
+````
+
+&nbsp;
+
+#### `#` ***CREATION DU LOGIN***
+
+````php
+// CREATION DE L'ENTITY USER
+php bin/console make:user
+
+// CREATION DU CONTROLLER DE LOGIN/LOGOUT
+php bin/console make:auth
+
+// INDIQUER LE TODO DANS LOGINCONTROLLER.PHP DE LA REDIRECTION LORS DU LOGOUT
+return new RedirectResponse($this->urlGenerator->generate('NOM-DE-LA-@ROUTE'));
+````
+
+&nbsp;
+
+#### `#` ***CREATION DU REGISTER FORM***
+
+````php
+php bin/console make:registration-form
+````
+
+&nbsp;
+
+#### `#` ***MIGRATION DE USERS***
+
+````php
+php bin/console make:migration
+//puis
+php bin/console doctrine:migrations:migrate
+//ds les faits on sauvegarde à l instant T les differents entitées generées jusqu ici Avant de les envoyer à la BDD avec la 2eme commande
+````
+
+---
+---
+
+&nbsp;
+
+### **CONTROLLER**
+
+---
+
+&nbsp;
+
+#### `#` ***HOMEPAGECONTROLLER***
+
+````php
+php bin/console make:controller HomePageController
 ````
 
