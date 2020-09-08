@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TimelinesController!{% endblock %}
+
+
+{% block body %}
+
+<div id='timeline-embed' style="width: 100%; height: 800px"></div>
+
+<script src="https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js"></script>
+<script type="text/javascript">
+    var additionalOptions = {
+        language: 'fr'
+    };
+    timeline = new TL.Timeline('timeline-embed',
+        'https://docs.google.com/spreadsheets/d/1ZMgVemYRG7CGT2cevLPX860dOmQfraKUtmSn5za667c/pubhtml',
+        additionalOptions);
+</script>
+{% endblock %}

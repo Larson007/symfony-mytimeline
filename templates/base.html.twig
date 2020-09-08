@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap" rel="stylesheet">
-    <title>
-      {% block title %}
-        My TimeLine -
-      {% endblock %}
-    </title>
-    {% block stylesheets %}
-      {{ encore_entry_link_tags('app') }}
-    {% endblock %}
-  </head>
-  <body id="body">
-    {% include 'partials/header.html.twig' %}
 
-    {% block body %}
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap" rel="stylesheet">
+  <link title="timeline-styles" rel="stylesheet"
+    href="https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css">
+  <link title="timeline-styles" rel="stylesheet"
+    href="https://cdn.knightlab.com/libs/timeline3/latest/css/fonts/font.playfair-faunaone.css">
+  <title>
+    {% block title %}
+    My TimeLine -
     {% endblock %}
+  </title>
+  {% block stylesheets %}
+  {{ encore_entry_link_tags('app') }}
+  {% endblock %}
+</head>
 
-    {% include 'partials/footer.html.twig' %}
-    {% block javascripts %}
-      {{ encore_entry_script_tags('app') }}
-    {% endblock %}
-  </body>
+<body id="body">
+  {% include 'partials/header.html.twig' %}
+
+  {% block body %}
+  {% endblock %}
+
+  {% include 'partials/footer.html.twig' %}
+  {% block javascripts %}
+  {{ encore_entry_script_tags('app') }}
+  {% endblock %}
+</body>
+
 </html>

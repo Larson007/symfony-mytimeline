@@ -7,6 +7,8 @@
         "node-sass": "^4.14.1",
         "popper.js": "^1.16.1",
         "regenerator-runtime": "^0.13.2",
+        "ts-loader": "^5.4.5",
+        "typescript": "^4.0.2",
         "webpack-notifier": "^1.6.0"
     },
     "license": "UNLICENSED",

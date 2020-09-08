@@ -16,4 +16,14 @@ class TimelinesController extends AbstractController
             'controller_name' => 'TimelinesController',
         ]);
     }
+
+    /**
+     * @Route("/timeline", name="timeline")
+     */
+    public function show()
+    {
+        return $this->render('timelines/show.html.twig', [
+            'controller_name' => 'TimelinesController',
+        ]);
+    }
 }
