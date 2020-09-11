@@ -1,9 +1,60 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello TimelinesController!{% endblock %}
-
+{% block title %}
+Nos Timelines
+{% endblock %}
 
 {% block body %}
+<div class="col-md-8 mx-auto timeline-index my-5 p-0">
+    <div class="card timeline-card" style="max-width: 100%">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="images/ww1.jpg" class="card-img" alt="..." />
+            </div>
+            <div class="col-md-6 card-content">
+                <div class="card-body py-auto">
+                    <h5 class="card-title text-uppercase">
+                        Card title
+                    </h5>
+                    <p class="card-text">
+                        This is a wider card with supporting text below as a natural
+                        lead-in to additional content. This content is a little bit
+                        longer.
+                    </p>
+                    <p class="card-text text-right">
+                        <small class="text-muted">Last updated 3 mins ago</small>
+                    </p>
+                </div>
 
+            </div>
+            <div class="col-md-2 p-0 text-center m-0 categories">
 
+                <a href="" class="categories-theme hvr-bubble-float-left">Histoire
+                </a>
+                <a href="" class="categories-event hvr-bubble-float-left">Guerre
+                </a>
+                <a href="" class="categories-siecle hvr-bubble-float-left">XIXième siècle
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-md-12 row card-bottom m-0 p-0">
+        <div class="col-md-4 row notation text-center mx-0">
+            <p class="m-0">Notation :</p>
+            <div class="stars mx-auto">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+            </div>
+        </div>
+        <a href="" class="col-md-6 text-center m-0 timeline-link hvr-sweep-to-right">Voire la Timeline</a>
+
+    </div>
+</div>
 {% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle Timeline{% endblock %}
+
+
+{% block body %}
+<div class="container mt-5">
+    <div class="col-md-8 mx-auto timeline-new">
+        <h1 class="h3 mb-3 font-weight-normal">Nouvelle Timeline</h1>
+
+        {{ form_start(Timeline) }}
+
+        <div class="col-md-12 timeline-new-dates">
+            <h3>Dates :</h3>
+            <div class="row">
+                <div class="mb-3 mt-4 row px-3">
+                    <div class="mr-4">{{ form_label(Timeline.year) }}</div>
+                    <div class="">{{ form_widget(Timeline.year) }}</div>
+                </div>
+                <div class="mb-3 mt-4 row px-3">
+                    <div class="mr-4">{{ form_label(Timeline.month) }}</div>
+                    <div class="">{{ form_widget(Timeline.month) }}</div>
+                </div>
+                <div class="mb-3 mt-4 row px-3">
+                    <div class="mr-4">{{ form_label(Timeline.day) }}</div>
+                    <div class="">{{ form_widget(Timeline.day) }}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 timeline-new-content">
+            <h3>Contenu</h3>
+            <div class="row">
+                <div class="mb-3 mt-4 row px-3">
+                    <div class="mr-4">{{ form_label(Timeline.headline) }}</div>
+                    <div class="">{{ form_widget(Timeline.headline) }}</div>
+                </div>
+                <div class="mb-3 mt-4 row px-3">
+                    <div class="mr-4">{{ form_label(Timeline.text) }}</div>
+                    <div class="">{{ form_widget(Timeline.text) }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 timeline-new-media">
+            <h3>Media</h3>
+            <div class="row">
+                <div class="mb-3 mt-4 row px-3">
+                    <div class="mr-4">{{ form_label(Timeline.media) }}</div>
+                    <div class="">{{ form_widget(Timeline.media) }}</div>
+                </div>
+                <div class="mb-3 mt-4 row px-3">
+                    <div class="mr-4">{{ form_label(Timeline.mediacredit) }}</div>
+                    <div class="">{{ form_widget(Timeline.mediacredit) }}</div>
+                </div>
+                <div class="mb-3 mt-4 row px-3">
+                    <div class="mr-4">{{ form_label(Timeline.mediacaption) }}</div>
+                    <div class="">{{ form_widget(Timeline.mediacaption) }}</div>
+                </div>
+                <div class="mb-3 mt-4 row px-3">
+                    <div class="mr-4">{{ form_label(Timeline.mediathumbnail) }}</div>
+                    <div class="">{{ form_widget(Timeline.mediathumbnail) }}</div>
+                </div>
+            </div>
+        </div>
+
+<div class="col-md-12 timeline-new-style">
+    <h3>Styles</h3>
+    <div class="row">
+            <div class="mb-3 mt-4 row px-3">
+            <div class="mr-4">{{ form_label(Timeline.type) }}</div>
+            <div class="">{{ form_widget(Timeline.type) }}</div>
+        </div>
+        <div class="mb-3 mt-4 row px-3">
+            <div class="mr-4">{{ form_label(Timeline.background) }}</div>
+            <div class="">{{ form_widget(Timeline.background) }}</div>
+        </div></div>
+</div>
+
+        <button type="submit" class="btn btn-lg btn-primary my-3">Valider</button>
+        {{ form_end(Timeline) }}
+    </div>
+</div>
+{% endblock %}
