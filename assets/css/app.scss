@@ -82,7 +82,9 @@ body {
 .register-form {
 
     #registration_form_email,
-    #registration_form_plainPassword {
+    #registration_form_plainPassword,
+    #registration_form_firstname,
+    #registration_form_lastname {
         background-clip: padding-box;
         background-color: #fff;
         border: 1px solid #80bdff;

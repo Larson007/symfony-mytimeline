@@ -7,7 +7,7 @@
 <div class="alert alert-danger" role="alert">{{ flashError }}</div>
 {% endfor %}
 <div class="container mt-5">
-    <div class="col-md-8 mx-auto register-form">
+    <div class="col-md-8 mx-auto register-form mb-5">
         <h1 class="h3 mb-3 font-weight-normal">Créer un compte</h1>
 
         {{ form_start(registrationForm) }}
@@ -19,10 +19,21 @@
             <div class="">{{ form_label(registrationForm.plainPassword) }}</div>
             <div class="">{{ form_widget(registrationForm.plainPassword) }}</div>
         </div>
+
+            <div class="my-3">
+                <div class="">{{ form_label(registrationForm.firstname) }}</div>
+                <div class="">{{ form_widget(registrationForm.firstname) }}</div>
+            </div>
+            <div class="my-3">
+                <div class="">{{ form_label(registrationForm.lastname) }}</div>
+                <div class="">{{ form_widget(registrationForm.lastname) }}</div>
+            </div>
+
         <div class="mb-3 mt-4 row px-3">
             <div class="mr-4">{{ form_widget(registrationForm.agreeTerms) }}</div>
             <div class="">{{ form_label(registrationForm.agreeTerms) }}</div>
         </div>
+
 
         <button type="submit" class="btn btn-lg btn-primary my-3">Inscription</button>
         {{ form_end(registrationForm) }}
