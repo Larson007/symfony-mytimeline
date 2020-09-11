@@ -32,7 +32,7 @@ class TimelinesController extends AbstractController
     }
 
     /**
-     * @Route("/timeline/new", name="timeline-new")
+     * @Route("/new", name="timeline-new")
      */
     public function new(Request $request)
     {
