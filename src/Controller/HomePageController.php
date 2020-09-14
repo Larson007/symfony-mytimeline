@@ -13,7 +13,7 @@ class HomePageController extends AbstractController
      */
     public function index(TimelinesRepository $timelines)
     {
-        $newtimelines = $timelines->findBy(array(), array('id' => 'DESC'),9);
+        $newtimelines = $timelines->findBy(array(), array('id' => 'DESC'),3);
         $besttimelines = $timelines->findBy(array(), array('id' => 'ASC'),2);// modifier id par le champs notation lorsque celui-ci sera implementé
 
 

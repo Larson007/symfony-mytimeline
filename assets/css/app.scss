@@ -25,6 +25,9 @@ body {
     background-color: $bg-grey;
     border-bottom: 1px solid black;
 
+    nav{
+        border: none !important;
+    }
     .nav-link-home:before {
         background-color: $red;
     }
@@ -32,15 +35,18 @@ body {
     .nav-link-timeline:before {
         background-color: $green;
     }
-#basic-addon1{
-    border-color: black;
-    background-color: $bg-light;
-    color: white;
-}
-#basic-addon1:hover{
 
-    color: $yellow;
-}
+    #basic-addon1 {
+        border-color: black;
+        background-color: $bg-light;
+        color: white;
+    }
+
+    #basic-addon1:hover {
+
+        color: $yellow;
+    }
+
     .form-control {
         background-color: $bg-dark;
         color: white;
@@ -51,9 +57,12 @@ body {
 
 
     .nav-item {
-        .nav-link-home:hover, .nav-link-timeline:hover{
+
+        .nav-link-home:hover,
+        .nav-link-timeline:hover {
             color: $yellow !important;
         }
+
         .nav-link {
             color: white !important;
             text-shadow: 3px 3px 2px black;
@@ -61,18 +70,21 @@ body {
     }
 
     .nav-liens:hover {
-        color: #343a40 !important;
+        color: white !important;
         font-weight: bold;
         text-shadow: none;
+
     }
 
     .nav-link-compte:hover {
         color: $yellow !important;
     }
+
     .dropdown-menu {
         border: 0.1px solid black;
-        background-color: $bg-light;
-        .dropdown-divider{
+        background-color: $bg-light !important;
+
+        .dropdown-divider {
             border-color: black !important;
         }
     }
@@ -276,7 +288,7 @@ footer {
             border-top: 2px solid black;
             border-bottom: 2px solid black;
 
-            .card-description{
+            .card-description {
                 font-size: 12px;
             }
         }

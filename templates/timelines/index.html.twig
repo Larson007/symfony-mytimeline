@@ -6,7 +6,7 @@
 
 {% block body %}
 {% for timeline in timelines %}
-<div class="col-md-8 mx-auto timeline-index my-5 p-5">
+<div class="col-md-8 mx-auto timeline-index my-5">
     <div class="card timeline-card" style="max-width: 100%">
         <div class="row no-gutters">
             <div class="col-md-4">
@@ -18,7 +18,7 @@
                         {{timeline.title}}
                     </h5>
                     <p class="card-text">
-                    {{timeline.startDate}} - {{timeline.endDate}}
+                        {{timeline.startDate}} - {{timeline.endDate}}
                     </p>
                     <p class="card-text card-description">
                         {{timeline.description|slice(0, 160)}} ...
@@ -49,10 +49,27 @@
                 <i class="fa fa-star-o" aria-hidden="true"></i>
             </div>
         </div>
-        <a href="{{path('timeline_show')}}" class="col-md-6 text-center m-0 timeline-link hvr-sweep-to-right">Voire la Timeline</a>
+        <a href="{{path('timeline_show')}}" class="col-md-6 text-center m-0 timeline-link hvr-sweep-to-right">Voire la
+            Timeline</a>
 
     </div>
 </div>
+
 {% endfor %}
 
+<div class="d-flex justify-content-center py-5">
+    <ul class="pagination">
+        <li class="page-item {% if page == 1 %}disabled{% endif %}">
+            <a class="page-link" href="{{path('timelines', {'page': page - 1} )}}">&laquo;</a>
+        </li>
+        {% for i in 1..pages %}
+        <li class="page-item {% if page == i %}active{% endif %}">
+            <a class="page-link" href="{{ path('timelines', {'page': i}) }}">{{ i }}</a>
+        </li>
+        {% endfor %}
+        <li class="page-item {% if page == pages %}disabled{% endif %}">
+            <a class="page-link" href="{{path('timelines', {'page': page + 1} )}}">&raquo;</a>
+        </li>
+    </ul>
+</div>
 {% endblock %}

@@ -16,17 +16,27 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class TimelinesController extends AbstractController
 {
     /**
-     * @Route("/timelines", name="timelines")
+     * @Route("/timelines/{page<\d+>?1}", name="timelines")
      */
-    public function index(TimelinesRepository $timelines, CategoriesRepository $categories)
+    public function index(TimelinesRepository $timelines, CategoriesRepository $categories, $page)
     {
-        $timelines = $timelines->findAll();
-        $categories = $categories->findAll();
+        $limit = 5;
+
+        // $start definit le offset Explication :https://mega.nz/file/DSQXmaJD#w3o_pb97Uvr4SnJ8n6D51SU-PberDsX1NTWIol1kD2M -> 4min
+        $start = $page * $limit - $limit;
+
+        // Connaitre le nombre de page en fonction de nombre de timlines
+        $total = count($timelines->findAll());
+        $pages = ceil($total/$limit); // 3.4 pages => 4 pages via la fonction PHP ceil
+
+        $timelines = $timelines->findBy([], [], $limit, $start);
+
 
         return $this->render('timelines/index.html.twig', [
-            'controller_name' => 'TimelinesController',
             'timelines' => $timelines,
-            'categories' => $categories,
+            'pages' => $pages,
+            'page' => $page,
+            //'categories' => $categories,
         ]);
     }
 
