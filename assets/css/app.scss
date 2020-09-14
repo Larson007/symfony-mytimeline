@@ -275,6 +275,10 @@ footer {
             color: white;
             border-top: 2px solid black;
             border-bottom: 2px solid black;
+
+            .card-description{
+                font-size: 12px;
+            }
         }
     }
 
@@ -365,21 +369,3 @@ footer {
 
 
 // NEW TIMELINE
-
-.timeline-new {
-    .timeline-new-dates {
-        background-color: #ee727a;
-    }
-
-    .timeline-new-content {
-        background-color: #c4e791;
-    }
-
-    .timeline-new-media {
-        background-color: #c694e8;
-    }
-
-    .timeline-new-style {
-        background-color: #84acfc;
-    }
-}

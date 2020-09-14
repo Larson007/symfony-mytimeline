@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TimelinesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,193 +20,166 @@ class Timelines
     private $id;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
-    private $year;
+    private $title;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $start_date;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $month;
+    private $end_date;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="text")
      */
-    private $day;
+    private $description;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private $headline;
+    private $publication_date;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\OneToMany(targetEntity=Events::class, mappedBy="timeline")
      */
-    private $text;
+    private $events;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
-    private $media;
+    private $thumbnail;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\ManyToOne(targetEntity=Categories::class, inversedBy="timelines")
      */
-    private $mediacredit;
+    private $categories;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $mediacaption;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $mediathumbnail;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $type;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $background;
+    public function __construct()
+    {
+        $this->events = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getYear(): ?int
+    public function getTitle(): ?string
     {
-        return $this->year;
+        return $this->title;
     }
 
-    public function setYear(?int $year): self
+    public function setTitle(string $title): self
     {
-        $this->year = $year;
+        $this->title = $title;
 
         return $this;
     }
 
-    public function getMonth(): ?int
+    public function getStartDate(): ?int
     {
-        return $this->month;
+        return $this->start_date;
     }
 
-    public function setMonth(?int $month): self
+    public function setStartDate(int $start_date): self
     {
-        $this->month = $month;
+        $this->start_date = $start_date;
 
         return $this;
     }
 
-    public function getDay(): ?int
+    public function getEndDate(): ?int
     {
-        return $this->day;
+        return $this->end_date;
     }
 
-    public function setDay(?int $day): self
+    public function setEndDate(?int $end_date): self
     {
-        $this->day = $day;
+        $this->end_date = $end_date;
 
         return $this;
     }
 
-    public function getHeadline(): ?string
+    public function getDescription(): ?string
     {
-        return $this->headline;
+        return $this->description;
     }
 
-    public function setHeadline(?string $headline): self
+    public function setDescription(string $description): self
     {
-        $this->headline = $headline;
+        $this->description = $description;
 
         return $this;
     }
 
-    public function getText(): ?string
+    public function getPublicationDate(): ?\DateTimeInterface
     {
-        return $this->text;
+        return $this->publication_date;
     }
 
-    public function setText(?string $text): self
+    public function setPublicationDate(?\DateTimeInterface $publication_date): self
     {
-        $this->text = $text;
+        $this->publication_date = $publication_date;
 
         return $this;
     }
 
-    public function getMedia(): ?string
+    /**
+     * @return Collection|Events[]
+     */
+    public function getEvents(): Collection
     {
-        return $this->media;
+        return $this->events;
     }
 
-    public function setMedia(?string $media): self
+    public function addEvent(Events $event): self
     {
-        $this->media = $media;
+        if (!$this->events->contains($event)) {
+            $this->events[] = $event;
+            $event->setTimeline($this);
+        }
 
         return $this;
     }
 
-    public function getMediacredit(): ?string
+    public function removeEvent(Events $event): self
     {
-        return $this->mediacredit;
-    }
-
-    public function setMediacredit(?string $mediacredit): self
-    {
-        $this->mediacredit = $mediacredit;
+        if ($this->events->contains($event)) {
+            $this->events->removeElement($event);
+            // set the owning side to null (unless already changed)
+            if ($event->getTimeline() === $this) {
+                $event->setTimeline(null);
+            }
+        }
 
         return $this;
     }
 
-    public function getMediacaption(): ?string
+    public function getThumbnail(): ?string
     {
-        return $this->mediacaption;
+        return $this->thumbnail;
     }
 
-    public function setMediacaption(?string $mediacaption): self
+    public function setThumbnail(string $thumbnail): self
     {
-        $this->mediacaption = $mediacaption;
+        $this->thumbnail = $thumbnail;
 
         return $this;
     }
 
-    public function getMediathumbnail(): ?string
+    public function getCategories(): ?Categories
     {
-        return $this->mediathumbnail;
+        return $this->categories;
     }
 
-    public function setMediathumbnail(?string $mediathumbnail): self
+    public function setCategories(?Categories $categories): self
     {
-        $this->mediathumbnail = $mediathumbnail;
-
-        return $this;
-    }
-
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(?string $type): self
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    public function getBackground(): ?string
-    {
-        return $this->background;
-    }
-
-    public function setBackground(?string $background): self
-    {
-        $this->background = $background;
+        $this->categories = $categories;
 
         return $this;
     }

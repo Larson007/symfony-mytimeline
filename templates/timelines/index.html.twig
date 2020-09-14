@@ -5,29 +5,31 @@
 {% endblock %}
 
 {% block body %}
-<div class="col-md-8 mx-auto timeline-index my-5 p-0">
+{% for timeline in timelines %}
+<div class="col-md-8 mx-auto timeline-index my-5 p-5">
     <div class="card timeline-card" style="max-width: 100%">
         <div class="row no-gutters">
             <div class="col-md-4">
-                <img src="images/ww1.jpg" class="card-img" alt="..." />
+                <img src="{{timeline.thumbnail}}" class="card-img" alt="..." height="180px" />
             </div>
             <div class="col-md-6 card-content">
-                <div class="card-body py-auto">
+                <div class="card-body py-2">
                     <h5 class="card-title text-uppercase">
-                        Card title
+                        {{timeline.title}}
                     </h5>
                     <p class="card-text">
-                        This is a wider card with supporting text below as a natural
-                        lead-in to additional content. This content is a little bit
-                        longer.
+                    {{timeline.startDate}} - {{timeline.endDate}}
                     </p>
-                    <p class="card-text text-right pt-3">
+                    <p class="card-text card-description">
+                        {{timeline.description|slice(0, 160)}} ...
+                    </p>
+                    <p class="card-text text-right">
                         <small class="text-muted">Last updated 3 mins ago</small>
                     </p>
                 </div>
             </div>
             <div class="col-md-2 p-0 text-center m-0 categories">
-                <a href="" class="categories-theme hvr-bubble-float-left">Histoire
+                <a href="" class="categories-theme hvr-bubble-float-left">{{timeline.categories.themes}}
                 </a>
                 <a href="" class="categories-event hvr-bubble-float-left">Guerre
                 </a>
@@ -47,8 +49,10 @@
                 <i class="fa fa-star-o" aria-hidden="true"></i>
             </div>
         </div>
-        <a href="{{path('timeline')}}" class="col-md-6 text-center m-0 timeline-link hvr-sweep-to-right">Voire la Timeline</a>
+        <a href="{{path('timeline_show')}}" class="col-md-6 text-center m-0 timeline-link hvr-sweep-to-right">Voire la Timeline</a>
 
     </div>
 </div>
+{% endfor %}
+
 {% endblock %}
