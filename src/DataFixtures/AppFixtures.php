@@ -2,12 +2,14 @@
 
 namespace App\DataFixtures;
 
+use Faker\Factory;
 use App\Entity\User;
-use App\Entity\Themes;
 use App\Entity\Categories;
+use App\Entity\Timelines;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+
 
 class AppFixtures extends Fixture
 {
@@ -19,6 +21,9 @@ class AppFixtures extends Fixture
     
     public function load(ObjectManager $manager)
     {
+        // IMPORT DE FAKER
+        $faker = Factory::create('fr-FR');
+        //  USER
         $user = new User();
         $user   ->setEmail('mohamed@msn.com')
                 ->setPassword($this->encoder->encodePassword($user, 'password'))
@@ -26,6 +31,7 @@ class AppFixtures extends Fixture
                 ->setLastname('Ben Allal');
                 $manager->persist($user);
 
+        //  CATEGORIES
         $art = new Categories();
         $geographie = new Categories();
         $histoire = new Categories();
@@ -39,37 +45,66 @@ class AppFixtures extends Fixture
         $technologie = new Categories();
 
         $art->setThemes('Art');
+
         $manager->persist($art);
 
         $geographie->setThemes('Géographie');
+
         $manager->persist($art);
 
         $histoire->setThemes('Histoire');
+
         $manager->persist($histoire);
 
         $loisirs->setThemes('Loisir');
+
         $manager->persist($loisirs);
 
         $medecine->setThemes('Médecine');
+
         $manager->persist($medecine);
 
         $politique->setThemes('Politique');
+
         $manager->persist($politique);
 
         $religion->setThemes('Religion');
+
         $manager->persist($religion);
 
         $sciences->setThemes('Sciences');
+
         $manager->persist($sciences);
 
         $societe->setThemes('Société');
+
         $manager->persist($societe);
 
         $sport->setThemes('Sport');
+
         $manager->persist($sport);
         
         $technologie->setThemes('Technologie');
+
         $manager->persist($technologie);
+
+
+        //  TimeLine
+        
+        for ($i=0; $i < 50; $i++) { 
+            
+            $timeline = new Timelines;
+            $timeline   ->  setTitle($faker->sentence(3))
+                        ->  setStartDate($faker->year())
+                        ->  setEndDate($faker->year())
+                        ->  setDescription($faker->sentence(6))
+                        ->  setPublicationDate($faker->dateTime())
+                        ->  setThumbnail('https://via.placeholder.com/660x280')
+                        //->  setCategories($faker->numberBetween('123','132'))
+                        ;
+            $manager->persist($timeline);
+        }
+
 
         $manager->flush();
     }
