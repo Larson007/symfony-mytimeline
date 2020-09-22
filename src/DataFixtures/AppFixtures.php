@@ -96,7 +96,7 @@ class AppFixtures extends Fixture
             
             $timeline = new Timelines;
             $timeline   ->  setTitle($faker->sentence(3))
-                        ->  setStartDate($faker->year($max = '1945'))
+                        ->  setStartDate($faker->year($max = 1945))
                         ->  setEndDate($faker->year($max = 'now'))
                         ->  setDescription($faker->sentence(6))
                         ->  setPublicationDate($faker->dateTime())
