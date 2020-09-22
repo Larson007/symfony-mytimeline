@@ -9,44 +9,32 @@ use App\Form\TimelineType;
 use App\Repository\TimelinesRepository;
 use Doctrine\Persistence\ObjectManager;
 use App\Repository\CategoriesRepository;
+use App\Repository\EventsRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class TimelinesController extends AbstractController
 {
     /**
      * @Route("/timelines/{page<\d+>?1}", name="timelines")
      */
-    public function index(TimelinesRepository $timelines, CategoriesRepository $categories, $page)
+    public function index(TimelinesRepository $timelines, $page)
     {
         $limit = 5;
-
         // $start definit le offset Explication :https://mega.nz/file/DSQXmaJD#w3o_pb97Uvr4SnJ8n6D51SU-PberDsX1NTWIol1kD2M -> 4min
         $start = $page * $limit - $limit;
-
         // Connaitre le nombre de page en fonction de nombre de timlines
         $total = count($timelines->findAll());
         $pages = ceil($total/$limit); // 3.4 pages => 4 pages via la fonction PHP ceil
-
         $timelines = $timelines->findBy([], [], $limit, $start);
-
 
         return $this->render('timelines/index.html.twig', [
             'timelines' => $timelines,
             'pages' => $pages,
             'page' => $page,
-            //'categories' => $categories,
-        ]);
-    }
-
-    /**
-     * @Route("/timelines/show", name="timeline_show")
-     */
-    public function show()
-    {
-        return $this->render('timelines/show.html.twig', [
-            'controller_name' => 'TimelinesController',
         ]);
     }
 
@@ -78,6 +66,29 @@ class TimelinesController extends AbstractController
         }
         return $this->render('timelines/new.html.twig', [
             'timeline' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/show", name="timeline_show")
+     */
+    public function show()
+    {
+        return $this->render('timelines/show.html.twig', [
+            'controller_name' => 'TimelinesController',
+        ]);
+    }
+
+    /**
+     * @Route("/test", name="test")
+     */
+    public function test(EventsRepository $events, TimelinesRepository $timelines)
+    {
+
+        $events = $events->findAll();
+
+        return $this->render('timelines/test.html.twig', [
+            'events' => $events,
         ]);
     }
 }

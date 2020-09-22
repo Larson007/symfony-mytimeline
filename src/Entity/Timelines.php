@@ -45,11 +45,6 @@ class Timelines
     private $publication_date;
 
     /**
-     * @ORM\OneToMany(targetEntity=Events::class, mappedBy="timeline")
-     */
-    private $events;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $thumbnail;
@@ -59,10 +54,16 @@ class Timelines
      */
     private $categories;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Events::class, mappedBy="timelines")
+     */
+    private $events;
+
     public function __construct()
     {
         $this->events = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -129,37 +130,6 @@ class Timelines
         return $this;
     }
 
-    /**
-     * @return Collection|Events[]
-     */
-    public function getEvents(): Collection
-    {
-        return $this->events;
-    }
-
-    public function addEvent(Events $event): self
-    {
-        if (!$this->events->contains($event)) {
-            $this->events[] = $event;
-            $event->setTimeline($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEvent(Events $event): self
-    {
-        if ($this->events->contains($event)) {
-            $this->events->removeElement($event);
-            // set the owning side to null (unless already changed)
-            if ($event->getTimeline() === $this) {
-                $event->setTimeline(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getThumbnail(): ?string
     {
         return $this->thumbnail;
@@ -183,4 +153,36 @@ class Timelines
 
         return $this;
     }
+
+    /**
+     * @return Collection|Events[]
+     */
+    public function getEvents(): Collection
+    {
+        return $this->events;
+    }
+
+    public function addEvent(Events $event): self
+    {
+        if (!$this->events->contains($event)) {
+            $this->events[] = $event;
+            $event->setTimelines($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvent(Events $event): self
+    {
+        if ($this->events->contains($event)) {
+            $this->events->removeElement($event);
+            // set the owning side to null (unless already changed)
+            if ($event->getTimelines() === $this) {
+                $event->setTimelines(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

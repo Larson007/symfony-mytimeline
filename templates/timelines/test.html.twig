@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Test{% endblock %}
+
+
+{% block body %}
+
+
+
+{% for event in events %}
+    <div class="col-md-8 mx-auto d-flex justify-content-around timeline">
+        <div class="col-md-5 event my-5 d-flex align-content-center">
+            <div class="event-content p-3 text-right">
+                <h2 class="h4">{{event.day}} / {{event.month}} / {{event.year}}</h2>
+                <h2 class="h4">{{event.headline}}</h2>
+            </div>
+        </div>
+        <div class="col-md-5 event my-5 p-3 row">
+            <div class="col-md-6 event-content">
+                <img src="{{event.media}}" alt="" class="w-100">
+            </div>
+            <div class="col-md-6 event-content">
+                <p class="h6">{{event.text}}</p>
+            </div>
+        </div>
+    </div>
+
+{% endfor %}
+{{dump(events)}}
+{% endblock %}

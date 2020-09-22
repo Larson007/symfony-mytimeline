@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use Faker\Factory;
 use App\Entity\User;
 use App\Entity\Categories;
+use App\Entity\Events;
 use App\Entity\Timelines;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -91,18 +92,33 @@ class AppFixtures extends Fixture
 
         //  TimeLine
         
-        for ($i=0; $i < 50; $i++) { 
+        for ($i=0; $i < 2; $i++) { 
             
             $timeline = new Timelines;
             $timeline   ->  setTitle($faker->sentence(3))
-                        ->  setStartDate($faker->year())
-                        ->  setEndDate($faker->year())
+                        ->  setStartDate($faker->year($max = '1945'))
+                        ->  setEndDate($faker->year($max = 'now'))
                         ->  setDescription($faker->sentence(6))
                         ->  setPublicationDate($faker->dateTime())
                         ->  setThumbnail('https://via.placeholder.com/660x280')
                         //->  setCategories($faker->numberBetween('123','132'))
                         ;
             $manager->persist($timeline);
+        }
+
+        //  Event
+        
+        for ($e=0; $e < 6; $e++) { 
+            
+            $events = new Events;
+            $events ->setYear($faker->year())
+                    ->setEndYear($faker->year())
+                    ->setHeadline($faker->sentence(3))
+                    ->setText($faker->sentence(6))
+                    ->setMedia('https://via.placeholder.com/660x280')
+            ;
+
+            $manager->persist($events);
         }
 
 

@@ -105,7 +105,8 @@ class Events
     /**
      * @ORM\ManyToOne(targetEntity=Timelines::class, inversedBy="events")
      */
-    private $timeline;
+    private $timelines;
+
 
     public function getId(): ?int
     {
@@ -316,15 +317,16 @@ class Events
         return $this;
     }
 
-    public function getTimeline(): ?Timelines
+    public function getTimelines(): ?Timelines
     {
-        return $this->timeline;
+        return $this->timelines;
     }
 
-    public function setTimeline(?Timelines $timeline): self
+    public function setTimelines(?Timelines $timelines): self
     {
-        $this->timeline = $timeline;
+        $this->timelines = $timelines;
 
         return $this;
     }
+
 }
