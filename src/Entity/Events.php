@@ -5,10 +5,11 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\EventsRepository;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=EventsRepository::class)
- * @ApiResource()
+ * @ApiResource(normalizationContext={"groups"={"events_read"}})
  */
 class Events
 {
@@ -16,96 +17,115 @@ class Events
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"events_read", "timelines_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"events_read", "timelines_read"})
      */
     private $year;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Groups({"events_read", "timelines_read"})
      */
     private $month;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Groups({"events_read", "timelines_read"})
      */
     private $day;
 
     /**
      * @ORM\Column(type="time", nullable=true)
+     * @Groups({"events_read", "timelines_read"})
      */
     private $time;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"events_read", "timelines_read"})
      */
     private $end_year;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Groups({"events_read", "timelines_read"})
      */
     private $end_month;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Groups({"events_read", "timelines_read"})
      */
     private $end_day;
 
     /**
      * @ORM\Column(type="time", nullable=true)
+     * @Groups({"events_read", "timelines_read"})
      */
     private $end_time;
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Groups({"events_read", "timelines_read"})
      */
     private $display_date;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"events_read", "timelines_read"})
      */
     private $headline;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"events_read", "timelines_read"})
      */
     private $text;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"events_read", "timelines_read"})
      */
     private $media;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"events_read", "timelines_read"})
      */
     private $media_credit;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"events_read", "timelines_read"})
      */
     private $media_caption;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"events_read", "timelines_read"})
      */
     private $media_thumbnail;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"events_read", "timelines_read"})
      */
     private $background;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"events_read", "timelines_read"})
      */
     private $type;
 
     /**
      * @ORM\ManyToOne(targetEntity=Timelines::class, inversedBy="events")
+     * @Groups({"events_read"})
      */
     private $timelines;
 

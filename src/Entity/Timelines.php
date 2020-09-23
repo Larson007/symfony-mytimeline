@@ -7,10 +7,11 @@ use App\Repository\TimelinesRepository;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=TimelinesRepository::class)
- * @ApiResource()
+ * @ApiResource(normalizationContext={"groups"={"timelines_read"}})
  */
 class Timelines
 {
@@ -18,46 +19,55 @@ class Timelines
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"timelines_read","categories_read","events_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"timelines_read","categories_read","events_read"})
      */
     private $title;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"timelines_read","categories_read","events_read"})
      */
     private $start_date;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Groups({"timelines_read","categories_read","events_read"})
      */
     private $end_date;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"timelines_read","categories_read","events_read"})
      */
     private $description;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @Groups({"timelines_read","categories_read","events_read"})
      */
     private $publication_date;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"timelines_read","categories_read","events_read"})
      */
     private $thumbnail;
 
     /**
      * @ORM\ManyToOne(targetEntity=Categories::class, inversedBy="timelines")
+     * @Groups({"timelines_read"})
      */
     private $categories;
 
     /**
      * @ORM\OneToMany(targetEntity=Events::class, mappedBy="timelines")
+     * @Groups({"timelines_read"})
      */
     private $events;
 
