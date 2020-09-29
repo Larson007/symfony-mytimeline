@@ -15,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class TimelinesController extends AbstractController
 {
@@ -28,7 +29,7 @@ class TimelinesController extends AbstractController
         $start = $page * $limit - $limit;
         // Connaitre le nombre de page en fonction de nombre de timlines
         $total = count($timelines->findAll());
-        $pages = ceil($total/$limit); // 3.4 pages => 4 pages via la fonction PHP ceil
+        $pages = ceil($total / $limit); // 3.4 pages => 4 pages via la fonction PHP ceil
         $timelines = $timelines->findBy([], [], $limit, $start);
 
         return $this->render('timelines/index.html.twig', [
@@ -51,7 +52,7 @@ class TimelinesController extends AbstractController
             foreach ($timeline->getCategories() as $categories) {
 
                 // On précise que le theme est lié à la timeline
-                $categories  ->setCategories($timeline);
+                $categories->setCategories($timeline);
 
                 // On dde au manager de faire persiste 
                 $entityManager = $this->getDoctrine()->getManager();
@@ -82,13 +83,21 @@ class TimelinesController extends AbstractController
     /**
      * @Route("/test", name="test")
      */
-    public function test(EventsRepository $events, TimelinesRepository $timelines)
+    public function test(HttpClientInterface $client)
     {
 
-        $events = $events->findAll();
+        // you can add request options (or override global ones) using the 3rd argument
+        $response = $client->request('GET', 'https://127.0.0.1:8000/api/timelines', [
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+            ],
+        ]);
 
         return $this->render('timelines/test.html.twig', [
-            'events' => $events,
+            'test' => $response,
+
         ]);
     }
 }
+

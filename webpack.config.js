@@ -19,8 +19,8 @@ Encore
         to: '../images/[path][name].[ext]'
     })
     .copyFiles({
-        from: './assets/uploads',
-        to: '../uploads/[path][name].[ext]'
+        from: './assets/json',
+        to: '../json/[path][name].[ext]'
     })
     
     /*

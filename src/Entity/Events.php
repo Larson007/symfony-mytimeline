@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\EventsRepository;
 use ApiPlatform\Core\Annotation\ApiResource;
@@ -22,321 +24,46 @@ class Events
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     * @Groups({"events_read", "timelines_read"})
-     */
-    private $year;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     * @Groups({"events_read", "timelines_read"})
-     */
-    private $month;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     * @Groups({"events_read", "timelines_read"})
-     */
-    private $day;
-
-    /**
-     * @ORM\Column(type="time", nullable=true)
-     * @Groups({"events_read", "timelines_read"})
-     */
-    private $time;
-
-    /**
-     * @ORM\Column(type="integer")
-     * @Groups({"events_read", "timelines_read"})
-     */
-    private $end_year;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     * @Groups({"events_read", "timelines_read"})
-     */
-    private $end_month;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     * @Groups({"events_read", "timelines_read"})
-     */
-    private $end_day;
-
-    /**
-     * @ORM\Column(type="time", nullable=true)
-     * @Groups({"events_read", "timelines_read"})
-     */
-    private $end_time;
-
-    /**
-     * @ORM\Column(type="date", nullable=true)
-     * @Groups({"events_read", "timelines_read"})
-     */
-    private $display_date;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Groups({"events_read", "timelines_read"})
-     */
-    private $headline;
-
-    /**
-     * @ORM\Column(type="text")
-     * @Groups({"events_read", "timelines_read"})
-     */
-    private $text;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"events_read", "timelines_read"})
-     */
-    private $media;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"events_read", "timelines_read"})
-     */
-    private $media_credit;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"events_read", "timelines_read"})
-     */
-    private $media_caption;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"events_read", "timelines_read"})
-     */
-    private $media_thumbnail;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"events_read", "timelines_read"})
-     */
-    private $background;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"events_read", "timelines_read"})
-     */
-    private $type;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Timelines::class, inversedBy="events")
      * @Groups({"events_read"})
      */
     private $timelines;
 
+    /**
+     * @ORM\OneToMany(targetEntity=StartDate::class, mappedBy="events")
+     * @Groups({"events_read","timelines_read"})
+     */
+    private $start_date;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Text::class, mappedBy="events")
+     * @Groups({"events_read","timelines_read"})
+     */
+    private $text;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Media::class, mappedBy="events")
+     * @Groups({"events_read","timelines_read"})
+     */
+    private $media;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Background::class, mappedBy="events")
+     * @Groups({"events_read","timelines_read"})
+     */
+    private $background;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getYear(): ?int
+    public function __construct()
     {
-        return $this->year;
-    }
-
-    public function setYear(int $year): self
-    {
-        $this->year = $year;
-
-        return $this;
-    }
-
-    public function getMonth(): ?int
-    {
-        return $this->month;
-    }
-
-    public function setMonth(?int $month): self
-    {
-        $this->month = $month;
-
-        return $this;
-    }
-
-    public function getDay(): ?int
-    {
-        return $this->day;
-    }
-
-    public function setDay(?int $day): self
-    {
-        $this->day = $day;
-
-        return $this;
-    }
-
-    public function getTime(): ?\DateTimeInterface
-    {
-        return $this->time;
-    }
-
-    public function setTime(?\DateTimeInterface $time): self
-    {
-        $this->time = $time;
-
-        return $this;
-    }
-
-    public function getEndYear(): ?int
-    {
-        return $this->end_year;
-    }
-
-    public function setEndYear(int $end_year): self
-    {
-        $this->end_year = $end_year;
-
-        return $this;
-    }
-
-    public function getEndMonth(): ?int
-    {
-        return $this->end_month;
-    }
-
-    public function setEndMonth(?int $end_month): self
-    {
-        $this->end_month = $end_month;
-
-        return $this;
-    }
-
-    public function getEndDay(): ?int
-    {
-        return $this->end_day;
-    }
-
-    public function setEndDay(?int $end_day): self
-    {
-        $this->end_day = $end_day;
-
-        return $this;
-    }
-
-    public function getEndTime(): ?\DateTimeInterface
-    {
-        return $this->end_time;
-    }
-
-    public function setEndTime(?\DateTimeInterface $end_time): self
-    {
-        $this->end_time = $end_time;
-
-        return $this;
-    }
-
-    public function getDisplayDate(): ?\DateTimeInterface
-    {
-        return $this->display_date;
-    }
-
-    public function setDisplayDate(?\DateTimeInterface $display_date): self
-    {
-        $this->display_date = $display_date;
-
-        return $this;
-    }
-
-    public function getHeadline(): ?string
-    {
-        return $this->headline;
-    }
-
-    public function setHeadline(string $headline): self
-    {
-        $this->headline = $headline;
-
-        return $this;
-    }
-
-    public function getText(): ?string
-    {
-        return $this->text;
-    }
-
-    public function setText(string $text): self
-    {
-        $this->text = $text;
-
-        return $this;
-    }
-
-    public function getMedia(): ?string
-    {
-        return $this->media;
-    }
-
-    public function setMedia(?string $media): self
-    {
-        $this->media = $media;
-
-        return $this;
-    }
-
-    public function getMediaCredit(): ?string
-    {
-        return $this->media_credit;
-    }
-
-    public function setMediaCredit(?string $media_credit): self
-    {
-        $this->media_credit = $media_credit;
-
-        return $this;
-    }
-
-    public function getMediaCaption(): ?string
-    {
-        return $this->media_caption;
-    }
-
-    public function setMediaCaption(?string $media_caption): self
-    {
-        $this->media_caption = $media_caption;
-
-        return $this;
-    }
-
-    public function getMediaThumbnail(): ?string
-    {
-        return $this->media_thumbnail;
-    }
-
-    public function setMediaThumbnail(?string $media_thumbnail): self
-    {
-        $this->media_thumbnail = $media_thumbnail;
-
-        return $this;
-    }
-
-    public function getBackground(): ?string
-    {
-        return $this->background;
-    }
-
-    public function setBackground(?string $background): self
-    {
-        $this->background = $background;
-
-        return $this;
-    }
-
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(?string $type): self
-    {
-        $this->type = $type;
-
-        return $this;
+        $this->start_date = new ArrayCollection();
+        $this->text = new ArrayCollection();
+        $this->media = new ArrayCollection();
+        $this->background = new ArrayCollection();
     }
 
     public function getTimelines(): ?Timelines
@@ -347,6 +74,130 @@ class Events
     public function setTimelines(?Timelines $timelines): self
     {
         $this->timelines = $timelines;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|StartDate[]
+     */
+    public function getStartDate(): Collection
+    {
+        return $this->start_date;
+    }
+
+    public function addStartDate(StartDate $startDate): self
+    {
+        if (!$this->start_date->contains($startDate)) {
+            $this->start_date[] = $startDate;
+            $startDate->setEvents($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStartDate(StartDate $startDate): self
+    {
+        if ($this->start_date->contains($startDate)) {
+            $this->start_date->removeElement($startDate);
+            // set the owning side to null (unless already changed)
+            if ($startDate->getEvents() === $this) {
+                $startDate->setEvents(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Text[]
+     */
+    public function getText(): Collection
+    {
+        return $this->text;
+    }
+
+    public function addText(Text $text): self
+    {
+        if (!$this->text->contains($text)) {
+            $this->text[] = $text;
+            $text->setEvents($this);
+        }
+
+        return $this;
+    }
+
+    public function removeText(Text $text): self
+    {
+        if ($this->text->contains($text)) {
+            $this->text->removeElement($text);
+            // set the owning side to null (unless already changed)
+            if ($text->getEvents() === $this) {
+                $text->setEvents(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Media[]
+     */
+    public function getMedia(): Collection
+    {
+        return $this->media;
+    }
+
+    public function addMedium(Media $medium): self
+    {
+        if (!$this->media->contains($medium)) {
+            $this->media[] = $medium;
+            $medium->setEvents($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMedium(Media $medium): self
+    {
+        if ($this->media->contains($medium)) {
+            $this->media->removeElement($medium);
+            // set the owning side to null (unless already changed)
+            if ($medium->getEvents() === $this) {
+                $medium->setEvents(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Background[]
+     */
+    public function getBackground(): Collection
+    {
+        return $this->background;
+    }
+
+    public function addBackground(Background $background): self
+    {
+        if (!$this->background->contains($background)) {
+            $this->background[] = $background;
+            $background->setEvents($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBackground(Background $background): self
+    {
+        if ($this->background->contains($background)) {
+            $this->background->removeElement($background);
+            // set the owning side to null (unless already changed)
+            if ($background->getEvents() === $this) {
+                $background->setEvents(null);
+            }
+        }
 
         return $this;
     }

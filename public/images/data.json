@@ -1,0 +1,43 @@
+{
+    "events": [
+        {
+            "start_date": {
+                "year":         "2015",
+                "month":        "11",
+                "day":          "28"
+            },
+            "text": {
+                "headline": "Mise en ligne du blog",
+                "text":     "Le développement touchant à sa fin, le blog fut mis en ligne le 28 novembre 2015"
+            },
+            "background": {
+                "color": "#737373"
+            }
+        },
+        {
+            "start_date": {
+                "year":         "2015",
+                "month":        "12",
+                "day":          "01"
+            },
+            "text": {
+                "headline": "Premier article en ligne",
+                "text":     "Le premier article mis en ligne sur le site avait pour sujet la pagination"
+            }
+        },
+        {
+            "start_date": {
+                "year":         "2015",
+                "month":        "12",
+                "day":          "04"
+            },
+            "text": {
+                "headline": "Nouvelle catégorie",
+                "text":     "Création de la catégorie Lifestyle, une catégorie qui contient des articles moins technique que ceux de la catégorie Web"
+            },
+            "background": {
+                "color": "#737373"
+            }
+        }
+    ]
+}

@@ -24,12 +24,12 @@
                         {{timeline.description|slice(0, 160)}} ...
                     </p>
                     <p class="card-text text-right">
-                        <small class="text-muted">Last updated 3 mins ago</small>
+                        <small class="text-muted">Dernière mise à jour {{timeline.publicationDate|date('d/m/Y')}}</small>
                     </p>
                 </div>
             </div>
             <div class="col-md-2 p-0 text-center m-0 categories">
-                <a href="" class="categories-theme hvr-bubble-float-left">{#{{timeline.categories.themes}}#}
+                <a href="" class="categories-theme hvr-bubble-float-left">{{timeline.categories.themes}}
                 </a>
                 <a href="" class="categories-event hvr-bubble-float-left">Guerre
                 </a>

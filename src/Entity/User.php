@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use ApiPlatform\Core\Annotation\ApiResource;
@@ -20,13 +22,13 @@ class User implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"user_read"})
+     * @Groups({"user_read", "timelines_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Groups({"user_read"})
+     * @Groups({"user_read", "timelines_read"})
      */
     private $email;
 
@@ -43,21 +45,32 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"user_read"})
+     * @Groups({"user_read", "timelines_read"})
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"user_read"})
+     * @Groups({"user_read", "timelines_read"})
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"user_read"})
+     * @Groups({"user_read", "timelines_read"})
      */
     private $avatar;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Timelines::class, mappedBy="user")
+     * @Groups({"user_read"})
+     */
+    private $timelines;
+
+    public function __construct()
+    {
+        $this->timelines = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -169,6 +182,37 @@ class User implements UserInterface
     public function setAvatar(?string $avatar): self
     {
         $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Timelines[]
+     */
+    public function getTimelines(): Collection
+    {
+        return $this->timelines;
+    }
+
+    public function addTimeline(Timelines $timeline): self
+    {
+        if (!$this->timelines->contains($timeline)) {
+            $this->timelines[] = $timeline;
+            $timeline->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTimeline(Timelines $timeline): self
+    {
+        if ($this->timelines->contains($timeline)) {
+            $this->timelines->removeElement($timeline);
+            // set the owning side to null (unless already changed)
+            if ($timeline->getUser() === $this) {
+                $timeline->setUser(null);
+            }
+        }
 
         return $this;
     }

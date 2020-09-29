@@ -49,13 +49,13 @@ class Timelines
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
-     * @Groups({"timelines_read","categories_read","events_read"})
+     * @Groups({"timelines_read"})
      */
     private $publication_date;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"timelines_read","categories_read","events_read"})
+     * @Groups({"timelines_read"})
      */
     private $thumbnail;
 
@@ -70,6 +70,12 @@ class Timelines
      * @Groups({"timelines_read"})
      */
     private $events;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="timelines")
+     * @Groups({"timelines_read"})
+     */
+    private $user;
 
     public function __construct()
     {
@@ -193,6 +199,18 @@ class Timelines
                 $event->setTimelines(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

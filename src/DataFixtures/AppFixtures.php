@@ -46,45 +46,25 @@ class AppFixtures extends Fixture
         $technologie = new Categories();
 
         $art->setThemes('Art');
-
         $manager->persist($art);
-
         $geographie->setThemes('Géographie');
-
         $manager->persist($art);
-
         $histoire->setThemes('Histoire');
-
         $manager->persist($histoire);
-
         $loisirs->setThemes('Loisir');
-
         $manager->persist($loisirs);
-
         $medecine->setThemes('Médecine');
-
         $manager->persist($medecine);
-
         $politique->setThemes('Politique');
-
         $manager->persist($politique);
-
         $religion->setThemes('Religion');
-
         $manager->persist($religion);
-
         $sciences->setThemes('Sciences');
-
         $manager->persist($sciences);
-
         $societe->setThemes('Société');
-
         $manager->persist($societe);
-
         $sport->setThemes('Sport');
-
         $manager->persist($sport);
-        
         $technologie->setThemes('Technologie');
 
         $manager->persist($technologie);
@@ -107,7 +87,7 @@ class AppFixtures extends Fixture
         }
 
         //  Event
-        
+        /*
         for ($e=0; $e < 6; $e++) { 
             
             $events = new Events;
@@ -120,7 +100,7 @@ class AppFixtures extends Fixture
 
             $manager->persist($events);
         }
-
+        */
 
         $manager->flush();
     }
