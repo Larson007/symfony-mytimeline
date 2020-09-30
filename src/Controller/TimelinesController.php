@@ -86,17 +86,13 @@ class TimelinesController extends AbstractController
     public function test(HttpClientInterface $client)
     {
 
-        // you can add request options (or override global ones) using the 3rd argument
-        $response = $client->request('GET', 'https://127.0.0.1:8000/api/timelines', [
+        /*$response = $client->request('GET', 'https://127.0.0.1:8000/api/timelines', [
             'headers' => [
-                'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
             ],
         ]);
-
-        return $this->render('timelines/test.html.twig', [
-            'test' => $response,
-
+        */
+        return $this->render('timelines/test.html.twig', [  
         ]);
     }
 }

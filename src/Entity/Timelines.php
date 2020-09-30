@@ -11,7 +11,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=TimelinesRepository::class)
- * @ApiResource(normalizationContext={"groups"={"timelines_read"}})
+ * @ApiResource(
+ *      collectionOperations={"GET", "POST"},
+ *      itemOperations={"GET", "DELETE", "PUT", "PATCH"},
+ *      normalizationContext={"groups"={"timelines_read"}}
+ * )
  */
 class Timelines
 {

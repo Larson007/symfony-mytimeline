@@ -9,7 +9,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=StartDateRepository::class)
- * @ApiResource(normalizationContext={"groups"={"start_date"}})
+ * @ApiResource(
+ *      collectionOperations={"GET", "POST"},
+ *      itemOperations={"GET", "DELETE", "PUT", "PATCH"},
+ *      normalizationContext={"groups"={"start_date"}}
+ * )
  */
 class StartDate
 {

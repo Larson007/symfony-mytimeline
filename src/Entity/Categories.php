@@ -11,7 +11,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=CategoriesRepository::class)
- * @ApiResource(normalizationContext={"groups"={"categories_read"}})
+ * @ApiResource(
+ *      collectionOperations={"GET", "POST"},
+ *      itemOperations={"GET"},
+ *      normalizationContext={"groups"={"categories_read"}}
+ * )
  */
 class Categories
 {

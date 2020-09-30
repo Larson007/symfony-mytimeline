@@ -9,7 +9,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=TextRepository::class)
- * @ApiResource(normalizationContext={"groups"={"text"}})
+ * @ApiResource(
+ *      collectionOperations={"GET", "POST"},
+ *      itemOperations={"GET", "DELETE", "PUT", "PATCH"},
+ *      normalizationContext={"groups"={"text"}}
+ * )
  */
 class Text
 {

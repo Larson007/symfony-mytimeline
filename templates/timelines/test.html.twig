@@ -4,13 +4,13 @@
 
 
 {% block body %}
-	
-{{ dump(test) }}
+
 
 <div class="" id='timeline-embed' style='width: 100%; height: 780px;'></div>
 
 
 <script src="https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js"></script>
+
 <script>
     this.options = {
         script_path: "",
@@ -42,6 +42,7 @@
         api_key_flickr: "", // Flickr API Key
         language: "fr"
     };
-    var timeline = new TL.Timeline('timeline-embed', 'json/data.json', options);
+    var timeline = new TL.Timeline('timeline-embed', 'json/test.json', options);
 </script>
+
 {% endblock %}

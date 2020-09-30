@@ -9,7 +9,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=BackgroundRepository::class)
- * @ApiResource(normalizationContext={"groups"={"background"}})
+ * @ApiResource(
+ *      collectionOperations={"GET", "POST"},
+ *      itemOperations={"GET"},
+ *      normalizationContext={"groups"={"background"}}
+ * )
  */
 class Background
 {

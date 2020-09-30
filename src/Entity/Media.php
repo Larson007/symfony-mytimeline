@@ -9,7 +9,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=MediaRepository::class)
- * @ApiResource(normalizationContext={"groups"={"media"}})
+ * @ApiResource(
+ *      collectionOperations={"GET", "POST"},
+ *      itemOperations={"GET", "DELETE", "PUT", "PATCH"},
+ *      normalizationContext={"groups"={"media"}}
+ * )
  */
 class Media
 {

@@ -1,0 +1,49 @@
+{
+    "id": 1,
+    "titre": "2 Guerre Mondiale",
+    "startdate": 1939,
+    "enddate": 1945,
+    "description": "La Seconde Guerre mondiale, ou Deuxième Guerre mondiale, est un conflit armé à l'échelle planétaire qui dure du 1ᵉʳ septembre 1939 au 2 septembre 1945. Ce conflit oppose schématiquement les Alliés et l’Axe.",
+    "publication_date": "2020-04-30T15:28:25+00:00",
+    "images": "https://via.placeholder.com/660x280",
+    "categories": {
+        "id": 2,
+        "themes": "Histoire"
+    },
+    "events": [
+        {
+            "id": 5,
+            "start_date": 
+                {
+                    "id": 5,
+                    "year": "1939"
+                }
+            ,
+            "text": 
+                {
+                    "id": 1,
+                    "headline": "Debut de la Guerre",
+                    "text": "Hitler a brutalement occupé Prague et annexé la Bohême-Moravie le 15 mars 1939, peu après les accords de Munich. \r\n\r\nFort de ses premiers succès sur la scène internationale, il a aussitôt commencé à émettre des revendications sur Dantzig (Gdansk en polonais), dont la population est majoritairement allemande. Il s'agit d'une « ville libre » instaurée par le traité de Versailles de 1919 pour ménager à la Pologne un accès portuaire sur la mer Baltique. À côté de Dantzig, la Pologne bénéficie aussi d'un étroit « corridor » qui lui offre une ouverture directe sur la mer et à l'extrémité duquel elle a créé le port de Gdynia. Ce corridor a l'inconvénient de séparer la Prusse orientale (et Dantzig) du reste de l'Allemagne."
+                }
+            ,
+            "media": 
+                {
+                    "id": 1,
+                    "url": "https://www.herodote.net/_images/pologne-1939.jpg"
+                }
+            ,
+            "background": 
+                {
+                    "id": 1,
+                    "color": "#EE727A"
+                }
+            
+        }
+    ],
+    "user": {
+        "id": 1,
+        "email": "mohamed@msn.com",
+        "firstname": "Mohamed",
+        "lastname": "Ben Allal"
+    }
+}
